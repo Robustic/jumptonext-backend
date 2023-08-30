@@ -31,7 +31,8 @@ const resolvers = {
             `
             console.log('hello 2')
             const response = await fetch(
-                'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
+                //'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
+                'https://www.google.fi',
                 {
                     method: 'POST',
                     headers: {
