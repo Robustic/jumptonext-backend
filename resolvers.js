@@ -35,8 +35,8 @@ const resolvers = {
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
+                        'Content-Type': 'text/json',
+                        Accept: 'text/json',
                         'digitransit-subscription-key':
                             process.env.DIGI_TRANSIT_SUBSCRIPTION,
                     },
@@ -89,8 +89,8 @@ const resolvers = {
                 {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
+                        'Content-Type': 'text/json',
+                        Accept: 'text/json',
                         'digitransit-subscription-key':
                             process.env.DIGI_TRANSIT_SUBSCRIPTION,
                     },
