@@ -46,6 +46,7 @@ const resolvers = {
                 },
             )
             console.log('hello 3')
+            console.log(response)
             const stopsJson = await response.json()
             console.log('hello 4')
             console.log('number of stops:', stopsJson.data.stops.length)
