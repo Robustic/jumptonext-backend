@@ -171,12 +171,16 @@ const resolvers = {
             })
         },
         login: async (root, args) => {
+            console.log('terve 1')
             const user = await User.findOne({ username: args.username })
+            console.log('terve 2')
 
             const passwordCorrect =
                 user === null
                     ? false
                     : await bcrypt.compare(args.password, user.passwordHash)
+
+            console.log('terve 3')
 
             if (!user || !passwordCorrect) {
                 throw new GraphQLError('wrong credentials', {
@@ -185,11 +189,13 @@ const resolvers = {
                     },
                 })
             }
+            console.log('terve 4')
 
             const userForToken = {
                 username: user.username,
                 id: user._id,
             }
+            console.log('terve 5')
 
             return {
                 value: jwt.sign(userForToken, process.env.JWT_SECRET),
