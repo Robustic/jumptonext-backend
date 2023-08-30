@@ -34,6 +34,7 @@ const resolvers = {
                 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
                 {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                         'digitransit-subscription-key':
@@ -87,6 +88,7 @@ const resolvers = {
                 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
                 {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json',
                         'digitransit-subscription-key':
