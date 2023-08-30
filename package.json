@@ -23,6 +23,7 @@
         "jsonwebtoken": "^9.0.1",
         "mongoose": "^7.4.3",
         "mongoose-unique-validator": "^4.0.0",
+        "node-fetch": "^2.7.0",
         "uuid": "^9.0.0",
         "ws": "^8.13.0"
     },
