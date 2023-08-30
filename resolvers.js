@@ -31,18 +31,17 @@ const resolvers = {
             `
             console.log('hello 2')
             const response = await fetch(
-                //'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
-                'https://www.google.fi',
+                'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
                 {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
-                        //                        'Content-Type': 'application/json',
-                        //                        'digitransit-subscription-key':
-                        //                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
+                        'Content-Type': 'application/graphql',
+                        'digitransit-subscription-key':
+                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
                     },
-                    // body: JSON.stringify({
-                    //     query,
-                    // }),
+                    body: JSON.stringify({
+                        query,
+                    }),
                 },
             )
             console.log('hello 3')
