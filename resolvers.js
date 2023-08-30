@@ -34,16 +34,15 @@ const resolvers = {
                 //'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
                 'https://www.google.fi',
                 {
-                    method: 'POST',
+                    method: 'GET',
                     headers: {
-                        mode: 'no-cors',
-                        'Content-Type': 'application/json',
-                        'digitransit-subscription-key':
-                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
+                        //                        'Content-Type': 'application/json',
+                        //                        'digitransit-subscription-key':
+                        //                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
                     },
-                    body: JSON.stringify({
-                        query,
-                    }),
+                    // body: JSON.stringify({
+                    //     query,
+                    // }),
                 },
             )
             console.log('hello 3')
