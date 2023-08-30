@@ -15,6 +15,7 @@ const resolvers = {
             return context.currentUser
         },
         stops: async (root, args) => {
+            console.log('hello 1')
             const query = `
                 query {
                     stops {
@@ -28,7 +29,7 @@ const resolvers = {
                     }
                 }
             `
-
+            console.log('hello 2')
             const response = await fetch(
                 'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
                 {
@@ -44,9 +45,11 @@ const resolvers = {
                     }),
                 },
             )
-
+            console.log('hello 3')
             const stopsJson = await response.json()
+            console.log('hello 4')
             console.log('number of stops:', stopsJson.data.stops.length)
+            console.log('hello 5')
             return stopsJson.data.stops
         },
         stop: async (root, args) => {
