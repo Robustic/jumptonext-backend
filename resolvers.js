@@ -14,92 +14,9 @@ const resolvers = {
         me: (root, args, context) => {
             return context.currentUser
         },
-        stops: async (root, args) => {
-            const query = `
-                query {
-                    stops {
-                        gtfsId
-                        name
-                        lat
-                        lon
-                        code
-                        zoneId
-                        vehicleType
-                    }
-                }
-            `
-
-            const response = await fetch(
-                'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'digitransit-subscription-key':
-                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
-                    },
-                    body: JSON.stringify({
-                        query,
-                    }),
-                },
-            )
-
-            const stopsJson = await response.json()
-            console.log('number of stops:', stopsJson.data.stops.length)
-            return stopsJson.data.stops
-        },
-        stop: async (root, args) => {
-            const query = `
-                query getStop($idToSearch: String!) {
-                    stop(id: $idToSearch) {
-                        name
-                        gtfsId
-                        code
-                        lat
-                        lon
-                        zoneId
-                        vehicleType
-                        stoptimesWithoutPatterns {
-                            scheduledArrival
-                            realtimeArrival
-                            arrivalDelay
-                            scheduledDeparture
-                            realtimeDeparture
-                            departureDelay
-                            realtime
-                            realtimeState
-                            serviceDay
-                            headsign
-                            trip {
-                                id
-                                routeShortName
-                            }
-                        }
-                    }
-                }
-            `
-            console.log(args.idToSearch)
-            const response = await fetch(
-                'https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                        'digitransit-subscription-key':
-                            process.env.DIGI_TRANSIT_SUBSCRIPTION,
-                    },
-                    body: JSON.stringify({
-                        query,
-                        variables: { idToSearch: args.id },
-                    }),
-                },
-            )
-
-            const stopsJson = await response.json()
-            console.log(stopsJson.data.stop)
-            return stopsJson.data.stop
+        sub: (root, args, context) => {
+            const sub = { sub: process.env.SUB }
+            return sub
         },
     },
     Mutation: {
