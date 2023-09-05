@@ -20,12 +20,14 @@ const resolvers = require('./resolvers')
 
 require('dotenv').config()
 
-const MONGODB_URI = process.env.MONGODB_URI
-
-console.log('connecting to', MONGODB_URI)
+const USED_MONGODB_URI =
+    process.env.NODE_ENV === 'test'
+        ? process.env.TEST_MONGODB_URI
+        : process.env.MONGODB_URI
+console.log('connecting to', USED_MONGODB_URI)
 
 mongoose
-    .connect(MONGODB_URI)
+    .connect(USED_MONGODB_URI)
     .then(() => {
         console.log('connected to MongoDB')
     })
@@ -79,7 +81,11 @@ const start = async () => {
             },
         }),
     )
-    const PORT = process.env.PORT || 4001
+    const PORT =
+        process.env.NODE_ENV === 'test'
+            ? process.env.TEST_PORT
+            : process.env.PORT || 4001
+
     httpServer.listen(PORT, () =>
         console.log(`Server is now running on port ${PORT}`),
     )

@@ -16,6 +16,7 @@ const typeDefs = `
     type Query {
         me: User
         sub: Sub
+        allUsers: [User!]!
     }
 
     type Mutation {
@@ -36,6 +37,9 @@ const typeDefs = `
         removeFavouriteStop(
             favouriteStopToRemove: String!
         ): User
+        removeAllUsers(
+            removeUsersString: String!
+        ): String
     }
 `
 

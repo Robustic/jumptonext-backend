@@ -186,4 +186,43 @@ const resolvers = {
     },
 }
 
+if (process.env.NODE_ENV === 'test') {
+    resolvers.Query = {
+        ...resolvers.Query,
+        allUsers: async (root, args, context) => {
+            const allUsersInDb = await User.find({})
+            return allUsersInDb
+        },
+    }
+
+    resolvers.Mutation = {
+        ...resolvers.Mutation,
+        removeAllUsers: async (root, args) => {
+            if (
+                !args.removeUsersString ||
+                args.removeUsersString !== 'Remove all users'
+            ) {
+                console.log('virhe')
+                throw new GraphQLError('Removing all users failed', {
+                    extensions: {
+                        code: 'SECURING_STRING_NOT_EXISTS',
+                        error,
+                    },
+                })
+            }
+
+            await User.deleteMany({}).catch((error) => {
+                throw new GraphQLError('Removing all users failed', {
+                    extensions: {
+                        code: 'BAD_USER_INPUT',
+                        error,
+                    },
+                })
+            })
+
+            return 'All users removed'
+        },
+    }
+}
+
 module.exports = resolvers
