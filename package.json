@@ -6,8 +6,8 @@
     "license": "ISC",
     "main": "index.js",
     "scripts": {
-        "start": "cross-env NODE_ENV=production node jumptonext-backend.js",
-        "dev": "cross-env NODE_ENV=test nodemon jumptonext-backend.js"
+        "start": "NODE_ENV=production node src/jumptonext-backend.js",
+        "dev": "cross-env NODE_ENV=test nodemon src/jumptonext-backend.js"
     },
     "dependencies": {
         "@apollo/server": "^4.9.1",
